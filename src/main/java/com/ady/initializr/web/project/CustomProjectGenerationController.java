@@ -21,8 +21,9 @@ public class CustomProjectGenerationController extends ProjectGenerationControll
     @Override
     public CustomProjectRequest projectRequest(Map<String, String> headers) {
         CustomProjectRequest request = new CustomProjectRequest();
-        request.getParameters().putAll(headers);  // Copy all request parameters
-        request.initialize(getMetadata());       // Initialize with metadata
+        request.setDockerfile(Boolean.parseBoolean(headers.get("dockerfile")));
+        request.getParameters().putAll(headers);
+        request.initialize(getMetadata());
         return request;
     }
 }

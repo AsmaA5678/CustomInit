@@ -6,6 +6,15 @@ initializr:
         artifactId: spring-cloud-dependencies
         versionProperty: spring-cloud.version
         order: 50
+        mappings:
+          - compatibilityRange: "[2.2.0.M4,2.3.x.BUILD-SNAPSHOT)"
+            version: Hoxton.SR8
+          - compatibilityRange: "[2.3.x.BUILD-SNAPSHOT,2.4.0-M1)"
+            version: Hoxton.BUILD-SNAPSHOT
+            repositories: spring-snapshots,spring-milestones
+          - compatibilityRange: "2.4.0.M2"
+            version: 2020.0.0-SNAPSHOT
+            repositories: spring-snapshots,spring-milestones
     gradle:
       dependency-management-plugin-version: 1.0.9.RELEASE
     platform:
