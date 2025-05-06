@@ -1,0 +1,94 @@
+initializr:
+  env:
+    boms:
+      spring-cloud:
+        groupId: org.springframework.cloud
+        artifactId: spring-cloud-dependencies
+        versionProperty: spring-cloud.version
+        order: 50
+    gradle:
+      dependency-management-plugin-version: 1.0.9.RELEASE
+    platform:
+      compatibility-range: "2.4.0.RELEASE"
+      v1-format-compatibility-range: "[2.4.0.RELEASE,3.0.0-M1)"
+    repositories:
+      spring-snapshots:
+        name: Spring Snapshots
+        url: https://repo.spring.io/snapshot
+        snapshotsEnabled: true
+      spring-milestones:
+        name: Spring Milestones
+        url: https://repo.spring.io/milestone
+
+  dependencies:
+    - name: Core
+      content:
+        - name: Dockerfile Generator
+          id: dockerfile
+          description: Generate Dockerfile for containerization
+          groupId: com.ady.initializr
+          artifactId: dockerfile-generator
+          version: 1.0.0
+          starter: false
+
+    - name: Web
+      content:
+        - name: Spring Web
+          id: web
+          description: Build web applications with Spring MVC
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-web
+
+    - name: Database
+      content:
+        - name: Spring Data JPA
+          id: data-jpa
+          groupId: org.springframework.boot
+          artifactId: spring-boot-starter-data-jpa
+
+  types:
+    - name: Maven Project
+      id: maven-project
+      description: Generate a Maven based project archive
+      tags:
+        build: maven
+        format: project
+      default: true
+      action: /starter.zip
+
+  packagings:
+    - name: Jar
+      id: jar
+      default: true
+
+  javaVersions:
+    - id: 17
+      name: 17
+      default: true
+    - id: 21
+      name: 21
+      default: false
+
+  languages:
+    - name: Java
+      id: java
+      default: true
+
+  group-id:
+    value: com.ady
+
+  artifact-id:
+    value: myapp
+
+  bootVersions:
+    - id: 3.2.0
+      name: 3.2.0
+      default: true
+    - id: 3.1.5
+      name: 3.1.5
+      default: false
+
+  docker-config:
+    base-image: openjdk:17-jdk-slim
+    build-image: maven:3.9-eclipse-temurin-17
+    expose-port: 8080
